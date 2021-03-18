@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Semester 4\\Stigma\\Tubes-2-Stima\\Test\\Test\\Test.csproj",
+      "projectUniqueName": "D:\\Semester 4\\Stigma\\tubes-stima-2\\src\\Test\\Test\\Test.csproj",
       "projectName": "Test",
-      "projectPath": "D:\\Semester 4\\Stigma\\Tubes-2-Stima\\Test\\Test\\Test.csproj",
+      "projectPath": "D:\\Semester 4\\Stigma\\tubes-stima-2\\src\\Test\\Test\\Test.csproj",
       "packagesPath": "C:\\Users\\Rehagana\\.nuget\\packages\\",
-      "outputPath": "D:\\Semester 4\\Stigma\\Tubes-2-Stima\\Test\\Test\\obj\\",
+      "outputPath": "D:\\Semester 4\\Stigma\\tubes-stima-2\\src\\Test\\Test\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Rehagana\\AppData\\Roaming\\NuGet\\NuGet.Config",

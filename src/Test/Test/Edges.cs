@@ -19,7 +19,7 @@ namespace Test
 
         public void printEdge()
         {
-            Console.WriteLine(this.node1 + ",", this.node2);
+            Console.WriteLine(this.node1 + "," + this.node2);
         }
 
         public string getNode1()

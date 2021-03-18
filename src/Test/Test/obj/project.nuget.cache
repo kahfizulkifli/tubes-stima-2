@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "TYymdaMBs0R5pVArenMb7rsrdQ1ni/7a04Ju+LCFINlZWch2GN6DZGJqT/BXDyYS+IOEFoPr6Kprxqb2H837SA==",
+  "dgSpecHash": "Q3jXImp8detMvWVHsLjRVkVRNTxPiPNzfJnGRcnFBXv37+gMiS9YuR4BRvlC2HJ7+sfPyYF09MfrsXMHZrXUJw==",
   "success": true,
-  "projectFilePath": "D:\\Semester 4\\Stigma\\Tubes-2-Stima\\Test\\Test\\Test.csproj",
+  "projectFilePath": "D:\\Semester 4\\Stigma\\tubes-stima-2\\src\\Test\\Test\\Test.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }
