@@ -17,13 +17,49 @@ namespace Test
             this.edge = new List<Edges>();
         }
 
-        public void BFS(string simpul) 
+        //BFS belum ditest
+        public void ExploreFriendsBFS(string a, string b) 
         {
-            string w;
-            List<string> antrian = new List<string>();
-            List<bool> dikunjungi = new List<bool>();
+            Queue<string> antrian = new Queue<string>();
+            HashSet<string> dikunjungi = new HashSet<string>();
+            antrian.Enqueue(a);
+            dikunjungi.Add(a);
             
+            while (antrian.count > 0)
+            {
+                string friend = antrian.Dequeue();
+                if (friend == b) return friend;
+
+                List<string> friends = new List<string>();
+                int i = 0;
+                foreach (Edges connection in this.edge)
+                {
+                    if (connection.getNode1() == friend) friends.Insert(i, connection.getNode2()); 
+                }
+
+                foreach (string friend in friends)
+                {
+                    if (!dikunjungi.Contains(friend))
+                    {
+                        antrian.Enqueue(friend);
+                        dikunjungi.Add(friend);
+                    }
+                }
+            }
+            return null;
+        }
+
+        //DFS belum kelar
+        public void ExploreFriendsDFS(int root, int search) 
+        {
             
+            bool[] dikunjungi = new Boolean[edgeSize];
+            bool[v] = true;
+
+            for (int i = 0; i < edgeSize; i++)
+            {
+                if (edge[v].getNode1() = vertice[v] &&)
+            }
         } 
 
         public List<Edges> getEdges()
