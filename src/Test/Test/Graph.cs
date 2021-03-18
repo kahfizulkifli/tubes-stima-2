@@ -10,7 +10,7 @@ namespace Test
         List<string> vertice;
         List<Edges> edge;
 
-        public Graph(int ukuranSisi, List<string> simpul, Edges[] sisi)
+        public Graph()
         {
             //this.edgeSize = ukuranSisi;
             this.vertice = new List<string>();
@@ -100,8 +100,6 @@ namespace Test
             {
                 for (int j = 0; j<size -1; j++)
                 {
-                    Console.WriteLine(this.edge[j].getNode1() + " " + this.edge[j+1].getNode2());
-                    Console.WriteLine(string.Compare(this.edge[j].getNode1(), this.edge[j + 1].getNode1()));
                     if (string.Compare(this.edge[j].getNode1(), this.edge[j+1].getNode1()) == 1)
                     { 
                         Edges temp1 = this.edge[j];

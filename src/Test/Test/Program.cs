@@ -11,6 +11,18 @@ namespace Test
 
             return lines;
         }
+
+        public Graph output(string[] lines)
+        {
+            //Inisiasi Graph
+            Graph testGraph = new Graph();
+
+            //Isi testGraph
+            testGraph.isiEdges(lines);
+            testGraph.isiVertice(lines);
+            testGraph.sortEdges();
+            return testGraph;
+        }
         static void Main(string[] args)
         {
             MainProgram x = new MainProgram();
@@ -20,16 +32,7 @@ namespace Test
             string fileName = "Test.txt";
             string[] lines = x.readFile(location + fileName);
 
-            //Inisiasi Graph
-            Edges[] newEdges = new Edges[lines.Length];
-            List<string> newString = new List<string>();
-            Graph testGraph = new Graph(lines.Length, newString, newEdges);
-
-            //Isi testGraph
-            testGraph.isiEdges(lines);
-            testGraph.isiVertice(lines);
-            testGraph.sortEdges();
-            
+            Graph testGraph = x.output(lines);
 
             Console.WriteLine("======================");
             foreach (string i in testGraph.getVertice())
