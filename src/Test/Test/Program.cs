@@ -20,6 +20,9 @@ namespace Test
             //Isi testGraph
             testGraph.isiEdges(lines);
             testGraph.isiVertice(lines);
+            List<string> temp = testGraph.getVertice();
+            temp.Sort();
+            testGraph.setVertice(temp);
             testGraph.sortEdges();
             return testGraph;
         }
@@ -31,6 +34,7 @@ namespace Test
             string location = "D:\\Semester 4\\Stigma\\tubes-stima-2\\src\\Test\\Test\\";
             string fileName = "Test.txt";
             string[] lines = x.readFile(location + fileName);
+            List<string> exploreFriend = new List<string>();
 
             Graph testGraph = x.output(lines);
 
@@ -46,6 +50,19 @@ namespace Test
             }
             Console.WriteLine("======================");
             // Keep the console window open in debug mode.
+
+            //exploreFriend = testGraph.ExploreFriendsDFS("C", "H");
+
+            //Console.WriteLine("Panjang : " + exploreFriend.Count);
+
+            //foreach (string test in exploreFriend)
+            //{
+            //    Console.WriteLine(test);
+            //}
+            Console.WriteLine("======================");
+
+            testGraph.mutualFriends("A", "G");
+
             Console.WriteLine("Press any key to exit.");
             System.Console.ReadKey();
 
