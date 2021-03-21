@@ -31,8 +31,8 @@ namespace Test
             MainProgram x = new MainProgram();
 
             //ReadFile From test.txt
-            string location = "D:\\Semester 4\\Stigma\\tubes-stima-2\\src\\Test\\Test\\";
-            //string location = "D:\\Code\\tubes-stima-2\\src\\Test\\Test\\";
+            // string location = "D:\\Semester 4\\Stigma\\tubes-stima-2\\src\\Test\\Test\\";
+            string location = "D:\\Code\\tubes-stima-2\\src\\Test\\Test\\";
 
             string fileName = "Test.txt";
             string[] lines = x.readFile(location + fileName);
@@ -54,15 +54,15 @@ namespace Test
             }
             Console.WriteLine("======================");
             // Keep the console window open in debug mode.
+            Console.WriteLine("exploreDFS()");
+            exploreFriend = testGraph.ExploreFriendsDFS("C", "H");
 
-            //exploreFriend = testGraph.ExploreFriendsDFS("C", "H");
+            Console.WriteLine("Panjang : " + exploreFriend.Count);
 
-            //Console.WriteLine("Panjang : " + exploreFriend.Count);
-
-            //foreach (string test in exploreFriend)
-            //{
-            //    Console.WriteLine(test);
-            //}
+            foreach (string test in exploreFriend)
+            {
+                Console.WriteLine(test);
+            }
             Console.WriteLine("======================");
 
             testGraph.mutualFriends("A", "G");
@@ -70,6 +70,7 @@ namespace Test
             Console.WriteLine("======================");
             Console.WriteLine("getAllMutual()");
             testGraph.getAllMutualFriends("A");
+            Console.WriteLine("======================");
 
             Console.WriteLine("Press any key to exit.");
             System.Console.ReadKey();

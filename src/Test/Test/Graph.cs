@@ -198,6 +198,22 @@ namespace Test
             return found;
         }
 
+        public Boolean notInList(string x, List<string> arrayString)
+        {
+            Boolean found = true;
+
+            foreach (string node in arrayString)
+            {
+                if (x == node)
+                {
+                    found = false;
+                }
+
+            }
+
+            return found;
+        }
+
         public void sortEdges()
         {
             int size = this.getEdges().Count;
@@ -306,7 +322,7 @@ namespace Test
             }
             if (res.Count > 0)
             {
-                Console.WriteLine(b);
+                Console.WriteLine("Nama akun : "+b);
                 Console.WriteLine("Mutual friends : "+res.Count);
                 for (int j = 0; j < res.Count; j++)
                 {
@@ -322,15 +338,17 @@ namespace Test
                 }
                 Console.WriteLine("");
             }
-            else if (res.Count == 0)
-            {
-                Console.WriteLine("No mutual friends");
-            }
+            // else if (res.Count == 0)
+            //{
+            //    Console.WriteLine("No mutual friends");
+            //}
         }
 
         public void getAllMutualFriends(string a)
         {
             List<string> currentFriends = new List<string>();
+            List<string> recommendedFriends = new List<string>();
+
             foreach (Edges i in this.getEdges())
             {
                 if (i.getNode1() == a)
@@ -339,7 +357,19 @@ namespace Test
                 }
             }
 
-            foreach (String i in currentFriends)
+            foreach (Edges j in this.getEdges())
+            {
+                if (j.getNode1() != a && this.notInList(j.getNode1(), currentFriends))
+                {
+                    if (this.notInList(j.getNode1(), recommendedFriends))
+                    {
+                        recommendedFriends.Add(j.getNode1());
+                    }
+                    
+                }
+            }
+
+            foreach (String i in recommendedFriends)
             {
                 // Console.WriteLine(i);
                 this.mutualFriends(a, i);
