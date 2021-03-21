@@ -306,12 +306,47 @@ namespace Test
             }
             if (res.Count > 0)
             {
+                Console.WriteLine(b);
+                Console.WriteLine("Mutual friends : "+res.Count);
                 for (int j = 0; j < res.Count; j++)
                 {
-                    Console.WriteLine(res[j]);
+                    if (j == res.Count - 1)
+                    {
+                        Console.WriteLine(res[j]);
+                    }
+                    else
+                    { 
+                        Console.Write(res[j]);
+                        Console.Write(",");
+                    }
                 }
+                Console.WriteLine("");
+            }
+            else if (res.Count == 0)
+            {
+                Console.WriteLine("No mutual friends");
             }
         }
+
+        public void getAllMutualFriends(string a)
+        {
+            List<string> currentFriends = new List<string>();
+            foreach (Edges i in this.getEdges())
+            {
+                if (i.getNode1() == a)
+                {
+                    currentFriends.Add(i.getNode2());
+                }
+            }
+
+            foreach (String i in currentFriends)
+            {
+                // Console.WriteLine(i);
+                this.mutualFriends(a, i);
+            }
+        }
+
+
     }
 }
 

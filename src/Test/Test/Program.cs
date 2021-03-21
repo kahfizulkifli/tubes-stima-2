@@ -32,6 +32,8 @@ namespace Test
 
             //ReadFile From test.txt
             string location = "D:\\Semester 4\\Stigma\\tubes-stima-2\\src\\Test\\Test\\";
+            //string location = "D:\\Code\\tubes-stima-2\\src\\Test\\Test\\";
+
             string fileName = "Test.txt";
             string[] lines = x.readFile(location + fileName);
             List<string> exploreFriend = new List<string>();
@@ -39,12 +41,14 @@ namespace Test
             Graph testGraph = x.output(lines);
 
             Console.WriteLine("======================");
+            Console.WriteLine("getVertice()");
             foreach (string i in testGraph.getVertice())
             {
                 Console.WriteLine(i);
             }
             Console.WriteLine("======================");
-            foreach(Edges i in testGraph.getEdges())
+            Console.WriteLine("getEdges()");
+            foreach (Edges i in testGraph.getEdges())
             {
                 i.printEdge();
             }
@@ -62,6 +66,10 @@ namespace Test
             Console.WriteLine("======================");
 
             testGraph.mutualFriends("A", "G");
+
+            Console.WriteLine("======================");
+            Console.WriteLine("getAllMutual()");
+            testGraph.getAllMutualFriends("A");
 
             Console.WriteLine("Press any key to exit.");
             System.Console.ReadKey();
