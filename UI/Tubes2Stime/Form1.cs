@@ -12,16 +12,13 @@ namespace Tubes2Stime
 {
     public partial class Form1 : Form
     {
+        
         public Form1()
         {
             InitializeComponent();
-            // Add item dropdown
-            secondUser.Items.Add("Tokyo");
-            firstUser.Items.Add("Eek");
-
             // Output Label
+            StaticMethod(this.friendsOutput);
             friendsOutput.Text = "No friends to recommend";
-
         }
 
         private void radioButton1_CheckedChanged(object sender, EventArgs e)
@@ -56,12 +53,25 @@ namespace Tubes2Stime
             Object userB = secondUser.SelectedItem;
             string user = userA.ToString();
             MessageBox.Show(user);
+            MessageBox.Show(namaFile);
+
+            if (fileBrowsed == true)
+            {
+                string[] lines = this.readFile(namaFile);
+                Graph testGraph = this.output(lines);
+
+                testGraph.getAllMutualFriends(user);
+                friendsOutput.Text = testGraph.outputOfMutual;
+            }
+
+            
+
 
         }
 
         private void secondUser_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            
         }
 
 
@@ -70,7 +80,7 @@ namespace Tubes2Stime
 
         }
 
-        private void friendsOutput_Click(object sender, EventArgs e)
+        public void friendsOutput_Click(object sender, EventArgs e)
         {
            
         }
@@ -99,11 +109,59 @@ namespace Tubes2Stime
 
         private void button1_Click(object sender, EventArgs e)
         {
+            // browse button
             OpenFileDialog filePath = new OpenFileDialog();
             if (filePath.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
                 MessageBox.Show(filePath.FileName);
             }
+
+            string[] lines = this.readFile(filePath.FileName);
+            Graph testGraph = this.output(lines);
+
+            foreach (string i in testGraph.getVertice())
+            {
+                // Add item dropdown
+                firstUser.Items.Add(i);
+                secondUser.Items.Add(i);
+            }
+
+            fileBrowsed = true;
+            namaFile = filePath.FileName.ToString();
+
         }
+
+        public string[] readFile(string path)
+        {
+            string[] lines = System.IO.File.ReadAllLines(@path);
+            return lines;
+        }
+
+        public Graph output(string[] lines)
+        {
+            //Inisiasi Graph
+            Graph testGraph = new Graph();
+
+            //Isi testGraph
+            testGraph.isiEdges(lines);
+            testGraph.isiVertice(lines);
+            List<string> temp = testGraph.getVertice();
+            temp.Sort();
+            testGraph.setVertice(temp);
+            testGraph.sortEdges();
+            return testGraph;
+        }
+        static private void StaticMethod(Label TheLabel)
+        {
+            TheLabel.Text = "This is from a static method";
+        }
+
+        private bool fileBrowsed = false;
+        private string namaFile;
+
+        
+
+
+
     }
 }
