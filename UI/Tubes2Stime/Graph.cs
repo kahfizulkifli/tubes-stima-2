@@ -166,6 +166,24 @@ namespace Tubes2Stime
 
         }
 
+        //Isi edges tapi gada yang bolak-balik
+        public void isiEdgesver2(string[] newString)
+        {
+            //int i = 0;
+            //this.edge = new Edges[newString.Length];
+            foreach (string line in newString)
+            {
+                Edges temp1 = new Edges(Char.ToString(line[0]), Char.ToString(line[2]));
+
+                this.edge.Add(temp1);
+
+                //i++
+                //this.edge[i].setNode1("test");
+                //this.edge[i].setNode2(Char.ToString(line[2]));
+            }
+
+        }
+
         public void isiVertice(string[] newString)
         {
             foreach (string line in newString)

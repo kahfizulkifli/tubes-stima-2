@@ -51,8 +51,9 @@ namespace Tubes2Stime
             MessageBox.Show("Work");
             Object userA = firstUser.SelectedItem;
             Object userB = secondUser.SelectedItem;
-            string user = userA.ToString();
-            MessageBox.Show(user);
+            string stringUserB = userB.ToString();
+            string stringUserA = userA.ToString();
+            MessageBox.Show(stringUserA);
             MessageBox.Show(namaFile);
 
             if (fileBrowsed == true)
@@ -60,8 +61,53 @@ namespace Tubes2Stime
                 string[] lines = this.readFile(namaFile);
                 Graph testGraph = this.output(lines);
 
-                testGraph.getAllMutualFriends(user);
+                // recommended friends
+                testGraph.getAllMutualFriends(stringUserA);
                 friendsOutput.Text = testGraph.outputOfMutual;
+
+                // explore friends
+                if (radioButton1.Checked == true)
+                {
+                    MessageBox.Show("DFS");
+                    List<string> exploreFriend = new List<string>();
+                    exploreFriend = testGraph.ExploreFriendsDFS(stringUserA, stringUserB);
+                    // Console.WriteLine("Panjang : " + exploreFriend.Count);
+
+
+                    Graph testGraph2 = this.output2(lines);
+                    Microsoft.Msagl.Drawing.Graph graph = new Microsoft.Msagl.Drawing.Graph("graph");
+
+                    foreach (Edges i in testGraph2.getEdges())
+                    {
+                        bool found = false;
+                        for (int j = 0; j < exploreFriend.Count - 1; j++)
+                        {
+                            if((exploreFriend[j] == i.getNode1() && exploreFriend[j+1] == i.getNode2() || exploreFriend[j] == i.getNode2() && exploreFriend[j + 1] == i.getNode1()) && found == false)
+                            {
+                                graph.AddEdge(exploreFriend[j], exploreFriend[j + 1]).Attr.Color = Microsoft.Msagl.Drawing.Color.Red;
+                                found = true;
+                            }
+                            // Console.WriteLine(exploreFriend[i] + " " + exploreFriend[i + 1]);
+                        }
+                        if (found == false)
+                        {
+                            graph.AddEdge(i.getNode1(), i.getNode2()).Attr.ArrowheadAtTarget = Microsoft.Msagl.Drawing.ArrowStyle.None;
+                        }
+                        
+                    }
+
+                    
+                    gViewer1.Graph = graph;
+                }
+                else if (radioButton2.Checked == true)
+                {
+                    MessageBox.Show("BFS");
+                }
+
+            }
+            else
+            {
+                MessageBox.Show("Masukkan file terlebih dahulu");
             }
 
             
@@ -128,11 +174,13 @@ namespace Tubes2Stime
                 secondUser.Items.Add(i);
             }
 
+            Graph testGraph2 = this.output2(lines);
+
             // gambar graph
             Microsoft.Msagl.Drawing.Graph graph = new Microsoft.Msagl.Drawing.Graph("graph");
-            foreach (Edges i in testGraph.getEdges())
+            foreach (Edges i in testGraph2.getEdges())
             {
-                graph.AddEdge(i.getNode1(), i.getNode2());
+                graph.AddEdge(i.getNode1(), i.getNode2()).Attr.ArrowheadAtTarget = Microsoft.Msagl.Drawing.ArrowStyle.None;
             }
             gViewer1.Graph = graph;
         }
@@ -150,6 +198,21 @@ namespace Tubes2Stime
 
             //Isi testGraph
             testGraph.isiEdges(lines);
+            testGraph.isiVertice(lines);
+            List<string> temp = testGraph.getVertice();
+            temp.Sort();
+            testGraph.setVertice(temp);
+            testGraph.sortEdges();
+            return testGraph;
+        }
+
+        public Graph output2(string[] lines)
+        {
+            //Inisiasi Graph
+            Graph testGraph = new Graph();
+
+            //Isi testGraph
+            testGraph.isiEdgesver2(lines);
             testGraph.isiVertice(lines);
             List<string> temp = testGraph.getVertice();
             temp.Sort();

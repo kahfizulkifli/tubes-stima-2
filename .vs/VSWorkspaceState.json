@@ -3,8 +3,10 @@
     "",
     "\\src",
     "\\src\\Test",
-    "\\src\\Test\\Test"
+    "\\src\\Test\\Test",
+    "\\UI",
+    "\\UI\\Tubes2Stime"
   ],
-  "SelectedNode": "\\src\\Test\\Test.sln",
+  "SelectedNode": "\\UI\\Tubes2Stime.sln",
   "PreviewInSolutionExplorer": false
 }
