@@ -1,24 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Code\\tubes-stima-2\\src\\Test\\Test\\Test.csproj": {}
+    "D:\\Semester 4\\Stigma\\tubes-stima-2\\src\\Test\\Test\\Test.csproj": {}
   },
   "projects": {
-    "D:\\Code\\tubes-stima-2\\src\\Test\\Test\\Test.csproj": {
+    "D:\\Semester 4\\Stigma\\tubes-stima-2\\src\\Test\\Test\\Test.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Code\\tubes-stima-2\\src\\Test\\Test\\Test.csproj",
+        "projectUniqueName": "D:\\Semester 4\\Stigma\\tubes-stima-2\\src\\Test\\Test\\Test.csproj",
         "projectName": "Test",
-        "projectPath": "D:\\Code\\tubes-stima-2\\src\\Test\\Test\\Test.csproj",
-        "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
-        "outputPath": "D:\\Code\\tubes-stima-2\\src\\Test\\Test\\obj\\",
+        "projectPath": "D:\\Semester 4\\Stigma\\tubes-stima-2\\src\\Test\\Test\\Test.csproj",
+        "packagesPath": "C:\\Users\\Rehagana\\.nuget\\packages\\",
+        "outputPath": "D:\\Semester 4\\Stigma\\tubes-stima-2\\src\\Test\\Test\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Users\\Rehagana\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -58,7 +54,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.201\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.200\\RuntimeIdentifierGraph.json"
         }
       }
     }
