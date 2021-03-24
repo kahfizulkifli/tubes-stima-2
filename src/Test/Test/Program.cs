@@ -31,8 +31,8 @@ namespace Test
             MainProgram x = new MainProgram();
 
             //ReadFile From test.txt
-            //string location = "D:/Semester 4/Stigma/tubes-stima-2/src/Test/Test/";
-             string location = "D:\\Code\\tubes-stima-2\\src\\Test\\Test\\";
+            string location = "D:/Semester 4/Stigma/tubes-stima-2/src/Test/Test/";
+            //string location = "D:\\Code\\tubes-stima-2\\src\\Test\\Test\\";
 
             string fileName = "Test.txt";
             string[] lines = x.readFile(location + fileName);
@@ -63,6 +63,19 @@ namespace Test
             {
                 Console.WriteLine(exploreFriend[i]+" "+ exploreFriend[i+1]);
             }
+
+            Console.WriteLine("exploreBFS()");
+            exploreFriend = testGraph.ExploreFriendsBFS("A", "H");
+            if (exploreFriend != null)
+            {
+                Console.WriteLine("Panjang : " + exploreFriend.Count);
+
+                for (int i = 0; i < exploreFriend.Count - 1; i++)
+                {
+                    Console.WriteLine(exploreFriend[i] + " " + exploreFriend[i + 1]);
+                }
+            }
+            
 
             /* foreach (string test in exploreFriend)
             {
