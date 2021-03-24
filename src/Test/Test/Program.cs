@@ -31,8 +31,8 @@ namespace Test
             MainProgram x = new MainProgram();
 
             //ReadFile From test.txt
-            string location = "D:/Semester 4/Stigma/tubes-stima-2/src/Test/Test/";
-            //string location = "D:\\Code\\tubes-stima-2\\src\\Test\\Test\\";
+            //string location = "D:/Semester 4/Stigma/tubes-stima-2/src/Test/Test/";
+            string location = "D:\\Code\\tubes-stima-2\\src\\Test\\Test\\";
 
             string fileName = "Test.txt";
             string[] lines = x.readFile(location + fileName);

@@ -102,6 +102,34 @@ namespace Tubes2Stime
                 else if (radioButton2.Checked == true)
                 {
                     MessageBox.Show("BFS");
+                    List<string> exploreFriend = new List<string>();
+                    exploreFriend = testGraph.ExploreFriendsBFS(stringUserA, stringUserB);
+                    Graph testGraph2 = this.output2(lines);
+                    Microsoft.Msagl.Drawing.Graph graph = new Microsoft.Msagl.Drawing.Graph("graph");
+
+                    if (exploreFriend != null)
+                    {
+                        foreach (Edges i in testGraph2.getEdges())
+                        {
+                            bool found = false;
+                            for (int j = 0; j < exploreFriend.Count - 1; j++)
+                            {
+                                if ((exploreFriend[j] == i.getNode1() && exploreFriend[j + 1] == i.getNode2() || exploreFriend[j] == i.getNode2() && exploreFriend[j + 1] == i.getNode1()) && found == false)
+                                {
+                                    graph.AddEdge(exploreFriend[j], exploreFriend[j + 1]).Attr.Color = Microsoft.Msagl.Drawing.Color.Red;
+                                    found = true;
+                                }
+                                // Console.WriteLine(exploreFriend[i] + " " + exploreFriend[i + 1]);
+                            }
+                            if (found == false)
+                            {
+                                graph.AddEdge(i.getNode1(), i.getNode2()).Attr.ArrowheadAtTarget = Microsoft.Msagl.Drawing.ArrowStyle.None;
+                            }
+
+                        }
+                    }
+
+                    gViewer1.Graph = graph;
                 }
 
             }
@@ -188,7 +216,7 @@ namespace Tubes2Stime
         public string[] readFile(string path)
         {
             string[] lines = System.IO.File.ReadAllLines(@path);
-            return lines;
+            return lines;            
         }
 
         public Graph output(string[] lines)

@@ -17,37 +17,81 @@ namespace Tubes2Stime
             this.edge = new List<Edges>();
         }
 
-        //bfs belum ditest
-        public string explorefriendsbfs(string a, string b)
+        public List<string> ExploreFriendsBFS(string a, string b)
         {
-            Queue<string> antrian = new Queue<string>();
-            HashSet<string> dikunjungi = new HashSet<string>();
-            antrian.Enqueue(a);
-            dikunjungi.Add(a);
+            Queue<List<string>> antrian = new Queue<List<string>>();
+            List<string> test = new List<string>();
+            int size = this.getVertice().Count;
+            bool found = false;
+            bool[] dikunjungi = new Boolean[size];
 
-            while (antrian.Count > 0)
+            for (int i = 0; i < size; i++)
             {
-                string friend = antrian.Dequeue();
-                if (friend == b) return friend;
-
-                List<string> friends = new List<string>();
-                int i = 0;
-                foreach (Edges connection in this.edge)
-                {
-                    if (connection.getNode1() == friend) friends.Insert(i, connection.getNode2());
-                }
-
-                foreach (string friend1 in friends)
-                {
-                    if (!dikunjungi.Contains(friend1))
-                    {
-                        antrian.Enqueue(friend1);
-                        dikunjungi.Add(friend1);
-                    }
-                }
+                dikunjungi[i] = false;
             }
-            return null;
+
+            test.Add(a);
+            antrian.Enqueue(test);
+            dikunjungi[binSearch(this.getVertice(), a, 0, this.getVertice().Count)] = true;
+
+            if (notInVertice(a) || notInVertice(b))
+            {
+                //Console.WriteLine("checkNull1");
+                return null;
+            }
+
+            else
+            {
+                while (antrian.Count > 0 && found == false)
+                {
+                    //Console.WriteLine(antrian.Count);
+                    List<string> tmp = antrian.Dequeue();
+
+                    string last = tmp[tmp.Count - 1];
+                    int i = 0;
+                    if (last == b)
+                    {
+                        test = tmp;
+                        found = true;
+                    }
+                    else
+                    {
+                        while (i < this.getEdges().Count)
+                        {
+                            string node1 = this.getEdges()[i].getNode1();
+                            string node2 = this.getEdges()[i].getNode2();
+                            List<string> tmp1 = new List<string>();
+                            for (int y = 0; y < tmp.Count; y++)
+                            {
+                                tmp1.Add(tmp[y]);
+                            }
+                            if (node1 == last && !dikunjungi[binSearch(this.getVertice(), node2, 0, this.getVertice().Count)])
+                            {
+                                tmp1.Add(node2);
+                                dikunjungi[binSearch(this.getVertice(), node2, 0, this.getVertice().Count)] = true;
+                                antrian.Enqueue(tmp1);
+                            }
+
+                            i++;
+                        }
+                    }
+
+                }
+                if (found == true)
+                {
+                    //Console.WriteLine("check");
+                    return test;
+                }
+                else
+                {
+                    //Console.WriteLine("CheckNull2");
+                    return null;
+                }
+
+            }
+
         }
+
 
         //DFS not tested for any possible bug yet
         public List<string> ExploreFriendsDFS(string a, string b)
