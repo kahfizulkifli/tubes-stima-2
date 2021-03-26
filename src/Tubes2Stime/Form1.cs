@@ -17,7 +17,6 @@ namespace Tubes2Stime
         {
             InitializeComponent();
             // Output Label
-            StaticMethod(this.friendsOutput);
             friendsOutput.Text = "No friends to recommend";
         }
 
@@ -48,13 +47,10 @@ namespace Tubes2Stime
 
         private void button2_Click(object sender, EventArgs e)
         {
-            // MessageBox.Show("Work");
             Object userA = firstUser.SelectedItem;
             Object userB = secondUser.SelectedItem;
             string stringUserB = userB.ToString();
             string stringUserA = userA.ToString();
-            //MessageBox.Show(stringUserA);
-            //MessageBox.Show(namaFile);
 
             if (fileBrowsed == true)
             {
@@ -68,12 +64,8 @@ namespace Tubes2Stime
                 // explore friends
                 if (radioButton1.Checked == true)
                 {
-                    // MessageBox.Show("DFS");
                     List<string> exploreFriend = new List<string>();
                     exploreFriend = testGraph.ExploreFriendsDFS(stringUserA, stringUserB);
-                    // Console.WriteLine("Panjang : " + exploreFriend.Count);
-
-
                     Graph testGraph2 = this.output2(lines);
                     Microsoft.Msagl.Drawing.Graph graph = new Microsoft.Msagl.Drawing.Graph("graph");
 
@@ -87,13 +79,11 @@ namespace Tubes2Stime
                                 graph.AddEdge(exploreFriend[j], exploreFriend[j + 1]).Attr.Color = Microsoft.Msagl.Drawing.Color.Red;
                                 found = true;
                             }
-                            // Console.WriteLine(exploreFriend[i] + " " + exploreFriend[i + 1]);
                         }
                         if (found == false)
                         {
                             graph.AddEdge(i.getNode1(), i.getNode2()).Attr.ArrowheadAtTarget = Microsoft.Msagl.Drawing.ArrowStyle.None;
                         }
-                        
                     }
 
                     
@@ -101,7 +91,6 @@ namespace Tubes2Stime
                 }
                 else if (radioButton2.Checked == true)
                 {
-                    // MessageBox.Show("BFS");
                     List<string> exploreFriend = new List<string>();
                     exploreFriend = testGraph.ExploreFriendsBFS(stringUserA, stringUserB);
                     Graph testGraph2 = this.output2(lines);
@@ -119,28 +108,20 @@ namespace Tubes2Stime
                                     graph.AddEdge(exploreFriend[j], exploreFriend[j + 1]).Attr.Color = Microsoft.Msagl.Drawing.Color.Red;
                                     found = true;
                                 }
-                                // Console.WriteLine(exploreFriend[i] + " " + exploreFriend[i + 1]);
                             }
                             if (found == false)
                             {
                                 graph.AddEdge(i.getNode1(), i.getNode2()).Attr.ArrowheadAtTarget = Microsoft.Msagl.Drawing.ArrowStyle.None;
                             }
-
                         }
                     }
-
                     gViewer1.Graph = graph;
                 }
-
             }
             else
             {
                 MessageBox.Show("Masukkan file terlebih dahulu");
             }
-
-            
-
-
         }
 
         private void secondUser_SelectedIndexChanged(object sender, EventArgs e)
@@ -166,18 +147,6 @@ namespace Tubes2Stime
 
         private void gViewer1_Load(object sender, EventArgs e)
         {
-            // Microsoft.Msagl.Drawing.Graph graph = new Microsoft.Msagl.Drawing.Graph("graph");
-            // create the graph content 
-            /* graph.AddEdge("A", "B");
-            graph.AddEdge("B", "C");
-            graph.AddEdge("A", "C").Attr.Color = Microsoft.Msagl.Drawing.Color.Green;
-            graph.FindNode("A").Attr.FillColor = Microsoft.Msagl.Drawing.Color.Magenta;
-            graph.FindNode("B").Attr.FillColor = Microsoft.Msagl.Drawing.Color.MistyRose;
-            Microsoft.Msagl.Drawing.Node c = graph.FindNode("C");
-            c.Attr.FillColor = Microsoft.Msagl.Drawing.Color.PaleGreen;
-            c.Attr.Shape = Microsoft.Msagl.Drawing.Shape.Diamond; */
-            //bind the graph to the viewer 
-            // gViewer1.Graph = graph;
 
         }
 
@@ -187,30 +156,27 @@ namespace Tubes2Stime
             OpenFileDialog filePath = new OpenFileDialog();
             if (filePath.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
-                // MessageBox.Show(filePath.FileName);
-            }
+                string[] lines = this.readFile(filePath.FileName);
+                Graph testGraph = this.output(lines);
+                fileBrowsed = true;
+                namaFile = filePath.FileName.ToString();
 
-            string[] lines = this.readFile(filePath.FileName);
-            Graph testGraph = this.output(lines);
-            fileBrowsed = true;
-            namaFile = filePath.FileName.ToString();
+                foreach (string i in testGraph.getVertice())
+                {
+                    // Add item dropdown
+                    firstUser.Items.Add(i);
+                    secondUser.Items.Add(i);
+                }
 
-            foreach (string i in testGraph.getVertice())
-            {
-                // Add item dropdown
-                firstUser.Items.Add(i);
-                secondUser.Items.Add(i);
-            }
-
-            Graph testGraph2 = this.output2(lines);
-
+                Graph testGraph2 = this.output2(lines);
             // gambar graph
-            Microsoft.Msagl.Drawing.Graph graph = new Microsoft.Msagl.Drawing.Graph("graph");
-            foreach (Edges i in testGraph2.getEdges())
-            {
-                graph.AddEdge(i.getNode1(), i.getNode2()).Attr.ArrowheadAtTarget = Microsoft.Msagl.Drawing.ArrowStyle.None;
+                Microsoft.Msagl.Drawing.Graph graph = new Microsoft.Msagl.Drawing.Graph("graph");
+                foreach (Edges i in testGraph2.getEdges())
+                {
+                    graph.AddEdge(i.getNode1(), i.getNode2()).Attr.ArrowheadAtTarget = Microsoft.Msagl.Drawing.ArrowStyle.None;
+                }
+                gViewer1.Graph = graph;
             }
-            gViewer1.Graph = graph;
         }
 
         public string[] readFile(string path)
@@ -247,10 +213,6 @@ namespace Tubes2Stime
             testGraph.setVertice(temp);
             testGraph.sortEdges();
             return testGraph;
-        }
-        static private void StaticMethod(Label TheLabel)
-        {
-            TheLabel.Text = "This is from a static method";
         }
 
         private bool fileBrowsed = false;
